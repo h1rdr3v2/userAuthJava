@@ -248,7 +248,12 @@ public class Login extends javax.swing.JFrame {
 
                     if (password.equals(storedPassword)) {
                         // Passwords match, login successful
-                        JOptionPane.showMessageDialog(new JFrame(), "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        Home HomeFrame = new Home();
+                        HomeFrame.setUser(rs.getString("fullname"));
+                        HomeFrame.setVisible(true);
+                        HomeFrame.pack();
+                        HomeFrame.setLocationRelativeTo(null);
+                        this.dispose();
                     } else {
                         // Passwords don't match
                         JOptionPane.showMessageDialog(new JFrame(), "Invalid Password", "ERROR", JOptionPane.ERROR_MESSAGE);

@@ -42,7 +42,7 @@ public class Register extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        usernameField = new javax.swing.JTextField();
+        fullnameField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,11 +123,11 @@ public class Register extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Username");
+        jLabel6.setText("Full Name");
 
-        usernameField.addActionListener(new java.awt.event.ActionListener() {
+        fullnameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFieldActionPerformed(evt);
+                fullnameFieldActionPerformed(evt);
             }
         });
 
@@ -161,7 +161,7 @@ public class Register extends javax.swing.JFrame {
                             .addComponent(passwordField)
                             .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                             .addComponent(jLabel6)
-                            .addComponent(usernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))))
+                            .addComponent(fullnameField, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))))
                 .addGap(0, 50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -183,7 +183,7 @@ public class Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fullnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -207,9 +207,9 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
 
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
+    private void fullnameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullnameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFieldActionPerformed
+    }//GEN-LAST:event_fullnameFieldActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
@@ -230,7 +230,7 @@ public class Register extends javax.swing.JFrame {
 
     private void registerbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerbtnMouseClicked
         String email = emailField.getText();
-        String username = usernameField.getText();
+        String username = fullnameField.getText();
         String password = passwordField.getText();
         String DBhost, DBuser, DBpass;
 
@@ -250,7 +250,7 @@ public class Register extends javax.swing.JFrame {
             }else if("".equals(password)){
                 JOptionPane.showMessageDialog(new JFrame(), "Password field can't be empty", "ERROR", JOptionPane.ERROR_MESSAGE);
             }else{
-                String query = "INSERT INTO users (`email`, `username`, `password`) VALUES (?, ?, ?)";
+                String query = "INSERT INTO users (`email`, `fullname`, `password`) VALUES (?, ?, ?)";
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 preparedStatement.setString(1, email);
                 preparedStatement.setString(2, username);
@@ -270,6 +270,12 @@ public class Register extends javax.swing.JFrame {
                 preparedStatement.close();
                 conn.close();
             }
+            
+            passwordField.setText("");            
+            fullnameField.setText("");
+            emailField.setText("");
+
+
             
         }catch(Exception e){
             System.out.println("Error"+e.getMessage());
@@ -314,6 +320,7 @@ public class Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailField;
+    private javax.swing.JTextField fullnameField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -327,6 +334,5 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton registerbtn;
-    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }
